@@ -1,93 +1,21 @@
-MENU = {
-    "espresso": {
-        "ingredientes": {
-            "agua": 50,
-            "cafe": 18,
-        },
-        "custo": 1.5,
-    },
-    "cafe": {
-        "ingredientes": {
-            "agua": 200,
-            "leite": 150,
-            "cafe": 24,
-        },
-        "custo": 2.5,
-    },
-    "cappucino": {
-        "ingredientes": {
-            "agua": 250,
-            "leite": 100,
-            "cafe": 24,
-        },
-        "custo": 3.0,
-    }
-}
+Descrição:
+Este código Python implementa um simulador básico de uma máquina de café. A máquina oferece três tipos de bebidas: espresso, café com leite e cappuccino. Cada bebida tem sua própria receita de ingredientes e custo associado.
 
-custo = 0
+O código mantém um registro dos recursos disponíveis na máquina, como água, leite e café, além de acompanhar o custo total das vendas realizadas.
 
-recursos = {
-    "agua": 300,
-    "leite": 200,
-    "cafe": 100,
-}
+Os principais componentes do código são:
 
-def recursos_suficientes(pedido_ingredientes):
-    """ Retorna verdadeiro quando o pedido pode ser feito, retorna False se os
-     ingredientes estiverem faltando """
-    for item in pedido_ingredientes:
-        if pedido_ingredientes[item] > recursos[item]:
-            print(f"Desculpe, não há {item} suficiente .")
-            return False
-    return True
+MENU: Um dicionário que define as opções de bebidas disponíveis, juntamente com os ingredientes necessários e os custos associados a cada uma.
 
+recursos: Um dicionário que rastreia a quantidade disponível de cada recurso na máquina.
 
-def processar_pagamento():
-    """ Retorna o total calculado de dinheiro inserido """
-    print("Por favor deposite o dinheiro. ")
-    total = int(input("quanto dinheiro "))
-    total += int(input("quantas moedas "))
-    total += int(input("quantas notas "))
-    total += int(input("quantas centavos "))
-    return total
+funções:
 
+recursos_suficientes: Verifica se há recursos suficientes na máquina para fazer a bebida solicitada.
+processar_pagamento: Solicita ao usuário que insira o valor do pagamento e calcula o total recebido.
+sucesso_transacao: Verifica se o pagamento é suficiente e fornece troco, se necessário.
+fazer_cafe: Deduz os ingredientes utilizados para fazer a bebida do total de recursos disponíveis.
+loop principal: Executa o programa principal, onde o usuário pode escolher uma bebida, verificar o relatório de recursos ou desligar a máquina.
 
-def sucesso_transacao(dinheiro_recebido, custo_bebida):
-    """ Retorna verdadeiro quando o pagamento for aceito,
-     ou falso se o dinheiro for insuficiente."""
-    if dinheiro_recebido >= custo_bebida:
-        mudanca = round(dinheiro_recebido - custo_bebida, 2)
-        print(f"Aqui está {mudanca}, no valor recebido .")
-        global custo
-        custo += custo_bebida
-        return True
-    else:
-        print("Desculpe, pagamento insuficiente. Por favor, insira mais dinheiro.")
-        return False
+Este código pode ser útil para entender os princípios básicos de processamento de transações, controle de recursos e estruturas de dados em Python, além de servir como base para o desenvolvimento de sistemas mais complexos de gerenciamento de vendas de bebidas.
 
-
-def fazer_cafe(nome_bebida, pedido_ingredientes):
-    """Deduza os ingredientes pedidos para o recurso"""
-    for item in pedido_ingredientes:
-        recursos[item] -= pedido_ingredientes[item]
-    print(f"Aqui esta o seu {nome_bebida}☕ ")
-
-
-is_on = True
-
-while is_on:
-    escolha = input("O QUE VOCÊ DESEJA BEBER? (ESPRESSO/CAFE/CAPPUCINO) : ").lower()
-    if escolha == "off":
-        break
-    elif escolha == "report":
-        print(f"Água: {recursos['agua']}ml")
-        print(f"Leite: {recursos['leite']}ml")
-        print(f"Café: {recursos['cafe']}g")
-        print(f"Dinheiro total arrecadado: R${custo}")
-    else:
-        bebida = MENU.get(escolha)
-        if bebida:
-            if recursos_suficientes(bebida["ingredientes"]):
-                pagamento = processar_pagamento()
-                if sucesso_transacao(pagamento, bebida["custo"]):
-                    fazer_cafe(escolha, bebida["ingredientes"])
