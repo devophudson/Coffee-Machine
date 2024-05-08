@@ -1,21 +1,21 @@
-Descrição:
-Este código Python implementa um simulador básico de uma máquina de café. A máquina oferece três tipos de bebidas: espresso, café com leite e cappuccino. Cada bebida tem sua própria receita de ingredientes e custo associado.
+## Description:
 
-O código mantém um registro dos recursos disponíveis na máquina, como água, leite e café, além de acompanhar o custo total das vendas realizadas.
+This Python code implements a basic simulator of a coffee machine. The machine offers three types of drinks: espresso, latte, and cappuccino. Each drink has its own recipe of ingredients and associated cost.
 
-Os principais componentes do código são:
+The code keeps track of the available resources in the machine, such as water, milk, and coffee, as well as tracking the total cost of sales made.
 
-MENU: Um dicionário que define as opções de bebidas disponíveis, juntamente com os ingredientes necessários e os custos associados a cada uma.
+The main components of the code are:
 
-recursos: Um dicionário que rastreia a quantidade disponível de cada recurso na máquina.
+MENU: A dictionary defining the available drink options, along with the required ingredients and costs associated with each.
 
-funções:
+resources: A dictionary tracking the available quantity of each resource in the machine.
 
-recursos_suficientes: Verifica se há recursos suficientes na máquina para fazer a bebida solicitada.
-processar_pagamento: Solicita ao usuário que insira o valor do pagamento e calcula o total recebido.
-sucesso_transacao: Verifica se o pagamento é suficiente e fornece troco, se necessário.
-fazer_cafe: Deduz os ingredientes utilizados para fazer a bebida do total de recursos disponíveis.
-loop principal: Executa o programa principal, onde o usuário pode escolher uma bebida, verificar o relatório de recursos ou desligar a máquina.
+Functions:
 
-Este código pode ser útil para entender os princípios básicos de processamento de transações, controle de recursos e estruturas de dados em Python, além de servir como base para o desenvolvimento de sistemas mais complexos de gerenciamento de vendas de bebidas.
+check_resources: Checks if there are sufficient resources in the machine to make the requested drink.
+process_payment: Prompts the user to input the payment amount and calculates the total received.
+transaction_success: Checks if the payment is sufficient and provides change if necessary.
+make_coffee: Deducts the ingredients used to make the drink from the total available resources.
+Main loop: Executes the main program, where the user can choose a drink, check the resource report, or power off the machine.
 
+This code can be useful for understanding the basic principles of transaction processing, resource control, and data structures in Python, as well as serving as a foundation for developing more complex beverage sales management systems.
